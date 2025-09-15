@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   just_audio: ^0.9.42
   get: ^4.7.2
+  control_style: ^0.1.0
+  flip_card: ^0.7.0
+  sc_flutter_component_library: ^0.2.0
+  file_picker: ^10.3.3
 
 dev_dependencies:
   flutter_test:
