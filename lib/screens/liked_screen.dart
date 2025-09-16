@@ -59,7 +59,7 @@ class _LikedScreenState extends State<LikedScreen> {
                       },
                       child: Container(
                         width: 60,
-                        height: 40,
+                        height: 46,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           color: Colors.white,
