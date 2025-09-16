@@ -8,17 +8,32 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [Colors.black, Color(0xFF6A1B9A)],
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/background.png",
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: CustomFlipCard(),
+
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Colors.black.withOpacity(0.7),
+                      const Color(0xFF6A1B9A).withOpacity(0.8),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Center(child: CustomFlipCard()),
+          ],
         ),
       ),
     );

@@ -8,23 +8,12 @@ import 'package:flutter/material.dart';
 class BottomNavCurvePainter extends CustomPainter {
   double insetRadius;
 
-  BottomNavCurvePainter({
-    this.insetRadius = 38,
-  });
+  BottomNavCurvePainter({this.insetRadius = 38});
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Rect rect = Rect.fromLTWH(0, 0, size.width, size.height + 56);
-
     Paint paint = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.bottomLeft,
-        end: Alignment.topRight,
-        colors: [
-          Colors.black.withOpacity(0.95),
-          const Color(0xFF4A148C).withOpacity(0.95), // dark purple
-        ],
-      ).createShader(rect)
+      ..color = Colors.transparent
       ..style = PaintingStyle.fill;
 
     Path path = Path()..moveTo(0, 12);
@@ -78,10 +67,10 @@ class CustomNavBarCurvedState extends State<CustomNavBarCurved> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(),
-    LikedScreen(),
-    NewDrops(),
-    ProfileScreen(),
+    const HomeScreen(),
+    const LikedScreen(),
+    const NewDrops(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -93,7 +82,21 @@ class CustomNavBarCurvedState extends State<CustomNavBarCurved> {
     final secondaryColor = Theme.of(context).colorScheme.secondary;
 
     return Scaffold(
-      body: IndexedStack(index: _selectedIndex, children: _pages),
+      extendBody: true,
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            colors: [
+              Colors.black,
+              Color(0xFF4A148C), // Dark purple gradient
+            ],
+          ),
+        ),
+        child: IndexedStack(index: _selectedIndex, children: _pages),
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         elevation: 0,

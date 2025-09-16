@@ -17,116 +17,131 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [Colors.black, Color(0xFF6A1B9A)],
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/background.png",
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
 
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      GradientText(
-                        text: 'Hello !! Good Evening ,',
-                        fontSize: 20,
-                        gradientColors: [
-                          Color.fromARGB(255, 218, 157, 236),
-                          Color.fromARGB(255, 168, 173, 211),
-                          Color.fromARGB(255, 88, 241, 241),
-                        ],
-                      ),
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Colors.black.withOpacity(0.7),
+                      const Color(0xFF6A1B9A).withOpacity(0.8),
                     ],
                   ),
-                  SizedBox(height: 12),
-                  Text(
-                    'What you want to hear today??',
+                ),
+              ),
+            ),
 
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Top Recommendation',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 120),
+                    Row(
                       children: [
-                        SongCard(
-                          image: 'assets/images/saiyara.png',
-                          song: 'assets/songs/saiyara.mp3',
-                        ),
-                        SizedBox(width: 8),
-                        SongCard(
-                          image: 'assets/images/mannmera.png',
-                          song: 'assets/songs/maanmera.mp3',
-                        ),
-                        SizedBox(width: 8),
-                        SongCard(
-                          image: 'assets/images/zarasa.png',
-                          song: 'assets/songs/zarasa.mp3',
-                        ),
-                        SizedBox(width: 8),
-                        SongCard(
-                          image: 'assets/images/jhol.png',
-                          song: 'assets/songs/jhol.mp3',
-                        ),
-                        SizedBox(width: 8),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Songs You May Like ',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => LikedScreen());
-                        },
-                        child: GradientText(
-                          text: 'See All',
-                          fontSize: 18,
+                        GradientText(
+                          text: 'Hello !! Good Evening ,',
+                          fontSize: 20,
                           gradientColors: [
                             Color.fromARGB(255, 218, 157, 236),
                             Color.fromARGB(255, 168, 173, 211),
                             Color.fromARGB(255, 88, 241, 241),
                           ],
                         ),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    const Text(
+                      'What you want to hear today??',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                       ),
-                    ],
-                  ),
-                  StackCardToggle(),
-                ],
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Top Recommendation',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          SongCard(
+                            image: 'assets/images/saiyara.png',
+                            song: 'assets/songs/saiyara.mp3',
+                          ),
+                          const SizedBox(width: 8),
+                          SongCard(
+                            image: 'assets/images/mannmera.png',
+                            song: 'assets/songs/maanmera.mp3',
+                          ),
+                          const SizedBox(width: 8),
+                          SongCard(
+                            image: 'assets/images/zarasa.png',
+                            song: 'assets/songs/zarasa.mp3',
+                          ),
+                          const SizedBox(width: 8),
+                          SongCard(
+                            image: 'assets/images/jhol.png',
+                            song: 'assets/songs/jhol.mp3',
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Songs You May Like ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const LikedScreen());
+                          },
+                          child: GradientText(
+                            text: 'See All',
+                            fontSize: 18,
+                            gradientColors: [
+                              Color.fromARGB(255, 218, 157, 236),
+                              Color.fromARGB(255, 168, 173, 211),
+                              Color.fromARGB(255, 88, 241, 241),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    const StackCardToggle(),
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

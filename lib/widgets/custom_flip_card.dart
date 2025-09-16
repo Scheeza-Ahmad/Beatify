@@ -1,3 +1,4 @@
+import 'package:beatify/models/user_model.dart';
 import 'package:beatify/widgets/gradient_text.dart';
 import 'package:beatify/widgets/neon_card.dart';
 import 'package:beatify/widgets/profile_photo.dart';
@@ -30,54 +31,22 @@ class CustomFlipCard extends StatelessWidget {
               children: <Widget>[
                 ProfileImagePicker(),
                 const SizedBox(height: 10),
-                const Text(
-                  'John Doe',
-                  textHeightBehavior: TextHeightBehavior(
-                    applyHeightToFirstAscent: false,
-                    applyHeightToLastDescent: false,
-                  ),
-                  style: TextStyle(
+
+                Text(
+                  UserModel.user?.name ?? 'Unknown User',
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     height: 1,
                   ),
                 ),
-                const SizedBox(height: 2),
-                const Text(
-                  '+12 - 34567890',
-                  textHeightBehavior: TextHeightBehavior(
-                    applyHeightToFirstAscent: false,
-                    applyHeightToLastDescent: false,
-                  ),
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.grey,
-                    height: 1,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                const Text(
-                  'john.doe@example.com',
-                  textHeightBehavior: TextHeightBehavior(
-                    applyHeightToFirstAscent: false,
-                    applyHeightToLastDescent: false,
-                  ),
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.grey,
-                    height: 1,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                const Text(
-                  'www.example.com',
-                  textHeightBehavior: TextHeightBehavior(
-                    applyHeightToFirstAscent: false,
-                    applyHeightToLastDescent: false,
-                  ),
-                  style: TextStyle(
+
+                const SizedBox(height: 8),
+
+                // ✅ Email from UserModel
+                Text(
+                  UserModel.user?.email ?? 'No Email',
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w300,
                     color: Colors.grey,
@@ -89,16 +58,15 @@ class CustomFlipCard extends StatelessWidget {
           ),
         ),
       ),
+
       back: Center(
         child: Container(
           width: 210,
           height: 300,
-          // padding: const EdgeInsets.all(8),
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
           ),
-
           child: NeonCard(
             intensity: 0.5,
             glowSpread: 0.8,

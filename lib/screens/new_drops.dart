@@ -3,7 +3,6 @@ import 'package:beatify/widgets/gradient_text.dart';
 import 'package:beatify/widgets/grid_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 
 class NewDrops extends StatelessWidget {
   const NewDrops({super.key});

@@ -1,3 +1,4 @@
+import 'package:beatify/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:beatify/models/playlist_model.dart';
 import 'package:beatify/widgets/audio_player.dart';
@@ -29,32 +30,26 @@ class _LikedScreenState extends State<LikedScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.fromLTRB(10, 40, 15, 15),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Container(
-                        height: 40,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(4),
+                          color:
+                              Colors.white, 
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.search, color: Colors.grey),
-                            Text(
-                              'Find in Liked Songs',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
+                        child: SearchBarr(
+                          hint: 'Search your liked song here',
+                          control: SearchController(),
                         ),
                       ),
                     ),
-
+                    const SizedBox(
+                      width: 8,
+                    ), // spacing between search and button
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -63,22 +58,19 @@ class _LikedScreenState extends State<LikedScreen> {
                           );
                         });
                       },
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 60,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: Colors.white,
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Sort',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      child: Container(
+                        width: 60,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Colors.white,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Sort',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
