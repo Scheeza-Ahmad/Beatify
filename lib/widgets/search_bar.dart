@@ -16,7 +16,7 @@ class SearchBarr extends StatelessWidget {
       children: [
         TextField(
           controller: control,
-          style: textStyle?.copyWith(color: Colors.white),
+          style: textStyle?.copyWith(color: Colors.black),
 
           decoration: InputDecoration(
             hintText: hint,
