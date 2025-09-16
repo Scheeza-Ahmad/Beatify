@@ -1,11 +1,18 @@
+import 'package:beatify/screens/liked_screen.dart';
+import 'package:beatify/widgets/gradient_text.dart';
+import 'package:beatify/widgets/song_card.dart';
+import 'package:beatify/widgets/stack_card_toggle.dart';
 import 'package:flutter/material.dart';
-import 'package:beatify/models/playlist_model.dart';
-import 'package:beatify/widgets/audio_player.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,120 +27,105 @@ class HomeScreen extends StatelessWidget {
               colors: [Colors.black, Color(0xFF6A1B9A)],
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(4),
+
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      GradientText(
+                        text: 'Hello !! Good Evening ,',
+                        fontSize: 20,
+                        gradientColors: [
+                          Color.fromARGB(255, 218, 157, 236),
+                          Color.fromARGB(255, 168, 173, 211),
+                          Color.fromARGB(255, 88, 241, 241),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'What you want to hear today??',
+
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Top Recommendation',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        SongCard(
+                          image: 'assets/images/saiyara.png',
+                          song: 'assets/songs/saiyara.mp3',
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Row(
-                          children: const [
-                            Icon(Icons.search, color: Colors.grey),
-                            Text(
-                              'Find in Liked Songs',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            ),
+                        SizedBox(width: 8),
+                        SongCard(
+                          image: 'assets/images/mannmera.png',
+                          song: 'assets/songs/maanmera.mp3',
+                        ),
+                        SizedBox(width: 8),
+                        SongCard(
+                          image: 'assets/images/zarasa.png',
+                          song: 'assets/songs/zarasa.mp3',
+                        ),
+                        SizedBox(width: 8),
+                        SongCard(
+                          image: 'assets/images/jhol.png',
+                          song: 'assets/songs/jhol.mp3',
+                        ),
+                        SizedBox(width: 8),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Songs You May Like ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => LikedScreen());
+                        },
+                        child: GradientText(
+                          text: 'See All',
+                          fontSize: 18,
+                          gradientColors: [
+                            Color.fromARGB(255, 218, 157, 236),
+                            Color.fromARGB(255, 168, 173, 211),
+                            Color.fromARGB(255, 88, 241, 241),
                           ],
                         ),
                       ),
-                    ),
-
-                    InkWell(
-                      onTap: () {
-                        print('Sort is clicked');
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 60,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: Colors.white,
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Sort',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Liked Songs',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: Colors.white,
+                    ],
                   ),
-                ),
+                  StackCardToggle(),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(
-                  'Songs: ${playlist.length}',
-                  style: TextStyle(fontSize: 13, color: Colors.white),
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: playlist.length,
-                  itemBuilder: (context, index) {
-                    final item = playlist[index];
-
-                    return ListTile(
-                      leading: Image.asset(
-                        item.images,
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
-                      ),
-
-                      title: Text(
-                        item.arrNames,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        item.artist,
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          Get.dialog(
-                            AudioPractice(
-                              image: item.images,
-                              songUrl: item.song,
-                            ),
-                          );
-                        },
-                        icon: Icon(Icons.play_arrow, color: Colors.white),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

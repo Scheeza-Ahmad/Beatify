@@ -84,8 +84,12 @@ class _AnimatedShadowButtonState extends State<AnimatedShadowButton>
 
   List<Color> _generateGradientColors(double t) {
     return [
-      Color.lerp(Colors.black, const Color.fromARGB(255, 60, 80, 146), t)!,
-      Color.lerp(Colors.purple, Colors.black, t)!,
+      Color.lerp(
+        const Color.fromARGB(255, 29, 38, 88),
+        const Color.fromARGB(255, 60, 80, 146),
+        t,
+      )!,
+      Color.lerp(const Color.fromARGB(255, 234, 132, 252), Colors.black, t)!,
     ];
   }
 

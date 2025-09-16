@@ -56,4 +56,10 @@ List<PlaylistModel> playlist = [
     artist: 'Talwinder, NDS Rippy Grewal',
     song: 'assets/songs/haseen.mp3',
   ),
+  PlaylistModel(
+    images: 'assets/images/sahiba.png',
+    arrNames: 'Sahiba',
+    artist: 'AR',
+    song: 'assets/songs/sahiba.mp3',
+  ),
 ];
