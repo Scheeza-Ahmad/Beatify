@@ -106,6 +106,18 @@ class NewDrops extends StatelessWidget {
                     image: 'assets/images/saiyara.png',
                     song: 'assets/songs/saiyara.mp3',
                   ),
+                  const SizedBox(height: 18),
+                  GridTileWidget(
+                    text: 'Sahiba',
+                    image: 'assets/images/kaisa.png',
+                    song: 'assets/songs/kaisa.mp3',
+                  ),
+                  const SizedBox(height: 18),
+                  GridTileWidget(
+                    text: 'Saiyara',
+                    image: 'assets/images/pehlinazar.png',
+                    song: 'assets/songs/pehlinazar.mp3',
+                  ),
                 ],
               ),
             ),

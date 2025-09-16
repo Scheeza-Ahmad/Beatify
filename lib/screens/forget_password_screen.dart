@@ -25,10 +25,30 @@ class ForgetPasswordScreen extends StatelessWidget {
         passwords[index] = newPassword;
         await pref.setStringList("passwords", passwords);
 
-        Get.snackbar("Success", "Password updated successfully!");
+        Get.snackbar(
+          "Success",
+          "Password updated successfully!",
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: const Color.fromARGB(255, 52, 26, 56),
+          colorText: Colors.white,
+          borderColor: Colors.black,
+          borderWidth: 2,
+          margin: const EdgeInsets.all(6),
+          borderRadius: 12,
+        );
         Get.off(() => const LoginScreen());
       } else {
-        Get.snackbar("Error", "No account found with this name.");
+        Get.snackbar(
+          "Error",
+          "No account found with this name.",
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: const Color.fromARGB(255, 52, 26, 56),
+          colorText: Colors.white,
+          borderColor: Colors.black,
+          borderWidth: 2,
+          margin: const EdgeInsets.all(6),
+          borderRadius: 12,
+        );
       }
     }
 
@@ -96,7 +116,22 @@ class ForgetPasswordScreen extends StatelessWidget {
                                   confirmPass.isNotEmpty) {
                                 resetPassword(name, newPass);
                               } else {
-                                Get.snackbar("Error", "Please fill all fields");
+                                Get.snackbar(
+                                  "Error",
+                                  "Please fill all fields",
+                                  snackPosition: SnackPosition.TOP,
+                                  backgroundColor: const Color.fromARGB(
+                                    255,
+                                    52,
+                                    26,
+                                    56,
+                                  ),
+                                  colorText: Colors.white,
+                                  borderColor: Colors.black,
+                                  borderWidth: 2,
+                                  margin: const EdgeInsets.all(6),
+                                  borderRadius: 12,
+                                );
                               }
                             },
                           ),

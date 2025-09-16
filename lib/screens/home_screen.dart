@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 120),
+                    SizedBox(height: 80),
                     Row(
                       children: [
                         GradientText(
@@ -104,6 +104,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             song: 'assets/songs/jhol.mp3',
                           ),
                           const SizedBox(width: 8),
+                          const SizedBox(width: 8),
+                          SongCard(
+                            image: 'assets/images/pehlinazar.png',
+                            song: 'assets/songs/pehlinazar.mp3',
+                          ),
+                          const SizedBox(width: 8),
+                          SongCard(
+                            image: 'assets/images/naina.png',
+                            song: 'assets/songs/naina.mp3',
+                          ),
                         ],
                       ),
                     ),

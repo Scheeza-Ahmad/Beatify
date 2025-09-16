@@ -37,8 +37,7 @@ class _LikedScreenState extends State<LikedScreen> {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color:
-                              Colors.white, 
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: SearchBarr(

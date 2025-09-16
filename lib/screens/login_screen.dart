@@ -25,13 +25,43 @@ class LoginScreen extends StatelessWidget {
       if (emails.contains(email)) {
         int index = emails.indexOf(email);
         if (passwords[index] == password) {
-          Get.snackbar("Success", "Login successful!");
+          Get.snackbar(
+            "Success",
+            "Login successful!",
+            snackPosition: SnackPosition.TOP,
+            backgroundColor: const Color.fromARGB(255, 52, 26, 56),
+            colorText: Colors.white,
+            borderColor: Colors.black,
+            borderWidth: 2,
+            margin: const EdgeInsets.all(6),
+            borderRadius: 12,
+          );
           Get.off(() => const CustomNavBarCurved());
         } else {
-          Get.snackbar("Error", "Wrong password!");
+          Get.snackbar(
+            "Error",
+            "Wrong password!",
+            snackPosition: SnackPosition.TOP,
+            backgroundColor: const Color.fromARGB(255, 52, 26, 56),
+            colorText: Colors.white,
+            borderColor: Colors.black,
+            borderWidth: 2,
+            margin: const EdgeInsets.all(6),
+            borderRadius: 12,
+          );
         }
       } else {
-        Get.snackbar("Error", "No account found. Please signup first.");
+        Get.snackbar(
+          "Error",
+          "No account found. Please signup first.",
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: const Color.fromARGB(255, 52, 26, 56),
+          colorText: Colors.white,
+          borderColor: Colors.black,
+          borderWidth: 2,
+          margin: const EdgeInsets.all(6),
+          borderRadius: 12,
+        );
         Get.to(() => const SignupScreen());
       }
     }
