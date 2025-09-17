@@ -1,5 +1,4 @@
 import 'package:beatify/screens/forget_password_screen.dart';
-// import 'package:beatify/screens/home_screen.dart';
 import 'package:beatify/screens/signup_screen.dart';
 import 'package:beatify/widgets/animated_button.dart';
 import 'package:beatify/widgets/custom_navbar_curved.dart';
@@ -9,6 +8,7 @@ import 'package:beatify/widgets/password_inputfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:beatify/models/user_model.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -141,6 +141,10 @@ class LoginScreen extends StatelessWidget {
                               var password = passwordcontroller.text.trim();
                               if (name.isNotEmpty && password.isNotEmpty) {
                                 loginUser(name, password);
+                                UserModel.user = UserModel(
+                                  name: name,
+                                  email: 'abc@gmail.com',
+                                );
                               } else {
                                 Get.snackbar(
                                   "Error",

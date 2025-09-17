@@ -42,7 +42,6 @@ class SignupScreen extends StatelessWidget {
         await pref.setStringList("emails", emails);
         await pref.setStringList("passwords", passwords);
 
-        // ✅ Save user info in UserModel
         UserModel.user = UserModel(name: name, email: email);
 
         Get.snackbar(
