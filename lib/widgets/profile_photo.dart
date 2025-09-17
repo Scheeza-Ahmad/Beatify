@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:typed_data';
-import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileImagePicker extends StatefulWidget {
   const ProfileImagePicker({super.key});
@@ -49,6 +49,8 @@ class ProfileImagePickerState extends State<ProfileImagePicker> {
                   )
                 : null,
           ),
+
+          // Overlay
           AnimatedOpacity(
             opacity: _isHovered ? 0.7 : 0.0,
             duration: const Duration(milliseconds: 300),
@@ -61,6 +63,8 @@ class ProfileImagePickerState extends State<ProfileImagePicker> {
               ),
             ),
           ),
+
+          // Camera Icon
           InkWell(
             onTap: _pickImage,
             child: AnimatedOpacity(
@@ -78,18 +82,17 @@ class ProfileImagePickerState extends State<ProfileImagePicker> {
     );
   }
 
+  /// 📸 Pick image from gallery using image_picker
   Future<void> _pickImage() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png'],
-    );
-    if (result != null) {
-      Uint8List? fileBytes = result.files.first.bytes;
-      if (fileBytes != null) {
-        setState(() {
-          _pickedProfileImageBytes = fileBytes;
-        });
-      }
+    final ImagePicker picker = ImagePicker();
+
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      Uint8List fileBytes = await image.readAsBytes();
+      setState(() {
+        _pickedProfileImageBytes = fileBytes;
+      });
     }
   }
 }

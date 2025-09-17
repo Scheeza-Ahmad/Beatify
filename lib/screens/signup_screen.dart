@@ -1,5 +1,4 @@
 import 'package:beatify/models/user_model.dart';
-import 'package:beatify/screens/login_screen.dart';
 import 'package:beatify/widgets/animated_button.dart';
 import 'package:beatify/widgets/custom_navbar_curved.dart';
 import 'package:beatify/widgets/inputfield_widget.dart';
@@ -34,7 +33,7 @@ class SignupScreen extends StatelessWidget {
           margin: const EdgeInsets.all(6),
           borderRadius: 12,
         );
-        Get.to(() => const LoginScreen());
+        Get.back();
       } else {
         // Save email & password
         emails.add(email);
@@ -155,7 +154,7 @@ class SignupScreen extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(() => LoginScreen());
+                                  Get.back();
                                 },
                                 child: Text(
                                   "Login",

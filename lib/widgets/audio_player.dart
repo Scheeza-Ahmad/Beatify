@@ -34,7 +34,6 @@ class _AudioPracticeState extends State<AudioPractice> {
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
@@ -60,35 +59,47 @@ class _AudioPracticeState extends State<AudioPractice> {
                 fit: BoxFit.cover,
               ),
               const SizedBox(height: 20),
+
+              // ✅ Single Play/Pause button
+              StreamBuilder<PlayerState>(
+                stream: player.playerStateStream,
+                builder: (context, snapshot) {
+                  final playerState = snapshot.data;
+                  final playing = playerState?.playing ?? false;
+
+                  return IconButton(
+                    onPressed: () {
+                      if (playing) {
+                        player.pause();
+                      } else {
+                        player.play();
+                      }
+                    },
+                    icon: Icon(
+                      playing ? Icons.pause : Icons.play_arrow,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                  );
+                },
+              ),
+
+              const SizedBox(height: 10),
+
+              // ✅ Speed buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () => player.play(),
-                    icon: const Icon(Icons.play_arrow, color: Colors.white),
-                  ),
-                  IconButton(
-                    onPressed: () => player.pause(),
-                    icon: const Icon(Icons.pause, color: Colors.white),
-                  ),
-                  IconButton(
-                    onPressed: () => player.stop(),
-                    icon: const Icon(Icons.stop, color: Colors.white),
-                  ),
-                ],
-              ),
-              Row(
                 children: [
                   AnimatedShadowButton(
                     text: '1x',
                     action: () => player.setSpeed(1.0),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   AnimatedShadowButton(
                     text: '1.5x',
                     action: () => player.setSpeed(1.5),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   AnimatedShadowButton(
                     text: '2x',
                     action: () => player.setSpeed(2.0),

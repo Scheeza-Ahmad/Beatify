@@ -1,4 +1,4 @@
-import 'package:beatify/screens/login_screen.dart';
+import 'package:beatify/screens/second_screen.dart';
 import 'package:beatify/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,7 @@ class _FirstSplashScreenState extends State<FirstSplashScreen>
     _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
 
     Future.delayed(const Duration(seconds: 4), () {
-      Get.off(() => const LoginScreen());
+      Get.off(() => SecondScreen());
     });
   }
 
