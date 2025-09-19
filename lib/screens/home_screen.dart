@@ -13,12 +13,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  String query = "";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
+            // Background Image
             Positioned.fill(
               child: Image.asset(
                 "assets/images/background.png",
@@ -26,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
+            // Gradient Overlay
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
@@ -41,19 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
+            // Content
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 30),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 80),
+                    const SizedBox(height: 80),
+
+                    // Greeting
                     Row(
                       children: [
                         GradientText(
                           text: 'Hello !! Good Evening ,',
                           fontSize: 20,
-                          gradientColors: [
+                          gradientColors: const [
                             Color.fromARGB(255, 218, 157, 236),
                             Color.fromARGB(255, 168, 173, 211),
                             Color.fromARGB(255, 88, 241, 241),
@@ -61,7 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
+
                     const Text(
                       'What you want to hear today??',
                       style: TextStyle(
@@ -71,6 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
+
+                    // Recommendations Section
                     const Text(
                       'Top Recommendation',
                       style: TextStyle(
@@ -80,6 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
+
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -100,24 +112,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           const SizedBox(width: 8),
                           SongCard(
-                            image: 'assets/images/jhol.png',
-                            song: 'assets/songs/jhol.mp3',
+                            image: 'assets/images/naina.png',
+                            song: 'assets/songs/naina.mp3',
                           ),
-                          const SizedBox(width: 8),
                           const SizedBox(width: 8),
                           SongCard(
                             image: 'assets/images/pehlinazar.png',
                             song: 'assets/songs/pehlinazar.mp3',
                           ),
-                          const SizedBox(width: 8),
-                          SongCard(
-                            image: 'assets/images/naina.png',
-                            song: 'assets/songs/naina.mp3',
-                          ),
                         ],
                       ),
                     ),
+
                     const SizedBox(height: 20),
+
+                    // Songs You May Like Section
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -136,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: GradientText(
                             text: 'See All',
                             fontSize: 18,
-                            gradientColors: [
+                            gradientColors: const [
                               Color.fromARGB(255, 218, 157, 236),
                               Color.fromARGB(255, 168, 173, 211),
                               Color.fromARGB(255, 88, 241, 241),
@@ -146,6 +155,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
+
+                    // 🎵 Filtered Playlist lis
+                    const SizedBox(height: 20),
+
                     const StackCardToggle(),
                   ],
                 ),
@@ -155,5 +168,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {
+        query = _searchController.text;
+      });
+    });
   }
 }

@@ -60,7 +60,6 @@ class _AudioPracticeState extends State<AudioPractice> {
               ),
               const SizedBox(height: 20),
 
-              // ✅ Single Play/Pause button
               StreamBuilder<PlayerState>(
                 stream: player.playerStateStream,
                 builder: (context, snapshot) {
@@ -86,7 +85,6 @@ class _AudioPracticeState extends State<AudioPractice> {
 
               const SizedBox(height: 10),
 
-              // ✅ Speed buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

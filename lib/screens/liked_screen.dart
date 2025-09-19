@@ -1,4 +1,3 @@
-import 'package:beatify/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:beatify/models/playlist_model.dart';
 import 'package:beatify/widgets/audio_player.dart';
@@ -12,14 +11,33 @@ class LikedScreen extends StatefulWidget {
 }
 
 class _LikedScreenState extends State<LikedScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  String searchQuery = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {
+        searchQuery = _searchController.text.toLowerCase();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final filteredPlaylist = playlist.where((item) {
+      final name = item.arrNames.toLowerCase();
+      final artist = item.artist.toLowerCase();
+      return name.contains(searchQuery) || artist.contains(searchQuery);
+    }).toList();
+
     return SafeArea(
       child: Scaffold(
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
@@ -30,9 +48,8 @@ class _LikedScreenState extends State<LikedScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(10, 40, 15, 15),
+                padding: const EdgeInsets.fromLTRB(10, 40, 15, 15),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Container(
@@ -40,37 +57,26 @@ class _LikedScreenState extends State<LikedScreen> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: SearchBarr(
-                          hint: 'Search your liked song here',
-                          control: SearchController(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ), // spacing between search and button
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          playlist.sort(
-                            (a, b) => a.arrNames.compareTo(b.arrNames),
-                          );
-                        });
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 46,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: Colors.white,
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Sort',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                        child: TextField(
+                          controller: _searchController,
+                          decoration: InputDecoration(
+                            hintText: 'Search your liked song here',
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 12,
                             ),
+                            suffixIcon: searchQuery.isNotEmpty
+                                ? IconButton(
+                                    icon: const Icon(Icons.clear),
+                                    onPressed: () {
+                                      _searchController.clear();
+                                      setState(() {
+                                        searchQuery = "";
+                                      });
+                                    },
+                                  )
+                                : null,
                           ),
                         ),
                       ),
@@ -78,7 +84,8 @@ class _LikedScreenState extends State<LikedScreen> {
                   ],
                 ),
               ),
-              Padding(
+
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Liked Songs',
@@ -89,18 +96,20 @@ class _LikedScreenState extends State<LikedScreen> {
                   ),
                 ),
               ),
+
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  'Songs: ${playlist.length}',
-                  style: TextStyle(fontSize: 13, color: Colors.white),
+                  'Songs: ${filteredPlaylist.length}',
+                  style: const TextStyle(fontSize: 13, color: Colors.white),
                 ),
               ),
+
               Expanded(
                 child: ListView.builder(
-                  itemCount: playlist.length,
+                  itemCount: filteredPlaylist.length,
                   itemBuilder: (context, index) {
-                    final item = playlist[index];
+                    final item = filteredPlaylist[index];
 
                     return ListTile(
                       leading: Image.asset(
@@ -109,14 +118,13 @@ class _LikedScreenState extends State<LikedScreen> {
                         width: 50,
                         fit: BoxFit.cover,
                       ),
-
                       title: Text(
                         item.arrNames,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                       subtitle: Text(
                         item.artist,
-                        style: TextStyle(color: Colors.grey),
+                        style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: IconButton(
                         onPressed: () {
@@ -127,7 +135,7 @@ class _LikedScreenState extends State<LikedScreen> {
                             ),
                           );
                         },
-                        icon: Icon(Icons.play_arrow, color: Colors.white),
+                        icon: const Icon(Icons.play_arrow, color: Colors.white),
                       ),
                     );
                   },
