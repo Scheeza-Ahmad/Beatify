@@ -77,7 +77,7 @@ class SignupScreen extends StatelessWidget {
               child: NeonCard(
                 child: Container(
                   width: 600,
-                  height: 440,
+                  height: 460,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),

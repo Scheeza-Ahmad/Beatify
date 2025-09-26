@@ -85,7 +85,7 @@ class LoginScreen extends StatelessWidget {
               child: NeonCard(
                 child: Container(
                   width: 600,
-                  height: 400,
+                  height: 430,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),
